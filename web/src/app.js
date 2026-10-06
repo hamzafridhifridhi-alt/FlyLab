@@ -543,27 +543,25 @@ function renderBody(body) {
   el("behavior-badge").textContent = body.behavior ?? "—";
   const legs = el("legs");
   if (!legs.children.length) {
-    for (let i = 0; i < 6; i += 1) {
+    for (let i = 0; i < 4; i += 1) {
       const d = document.createElement("div");
       d.className = "leg";
-      d.title = ["left front", "left mid", "left hind",
-                 "right front", "right mid", "right hind"][i];
+      d.title = ["Front Right Motor (M1)", "Rear Right Motor (M2)", "Rear Left Motor (M3)", "Front Left Motor (M4)"][i];
       legs.appendChild(d);
     }
   }
-  const order = [0, 3, 1, 4, 2, 5];
-  (body.contacts ?? []).forEach((_, i) => {
-    const cell = legs.children[order.indexOf(i)];
-    if (cell) cell.classList.toggle("down", Boolean(body.contacts[i]));
+  (body.contacts ?? []).forEach((active, i) => {
+    const cell = legs.children[i];
+    if (cell) cell.classList.toggle("down", Boolean(active));
   });
 
   const rows = [
-    ["speed", `${(body.speed_mm_s ?? 0).toFixed(1)} mm/s`],
-    ["walked", `${(body.distance_mm ?? 0).toFixed(1)} mm`],
+    ["drone speed", `${(body.speed_mm_s ?? 0).toFixed(1)} mm/s`],
+    ["flight dist", `${(body.distance_mm ?? 0).toFixed(1)} mm`],
     ["heading", `${(body.heading_deg ?? 0).toFixed(0)}\u00b0`],
     ["descending drive", (body.drive ?? 0).toFixed(2)],
     ["turn bias", (body.turn_bias ?? 0).toFixed(2)],
-    ["body clock", `${(body.sim_time_s ?? 0).toFixed(2)} s`],
+    ["drone clock", `${(body.sim_time_s ?? 0).toFixed(2)} s`],
   ];
   el("body-readout").innerHTML = rows
     .map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`)

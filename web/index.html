@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>FlyLab — live Drosophila connectome</title>
+<title>FlyLab — Drosophila Neural-Piloted Bitcraze Crazyflie 2 Drone</title>
 <link rel="stylesheet" href="/static/style.css" />
 </head>
 <body>
@@ -24,13 +24,13 @@
 <main class="layout">
   <section class="panel fly-panel">
     <div class="panel-head">
-      <h2>What the fly is doing</h2>
-      <span class="badge" id="behavior-badge">standing</span>
+      <h2>Bitcraze Crazyflie 2 Drone</h2>
+      <span class="badge" id="behavior-badge">hovering</span>
     </div>
     <div class="viewport fly-viewport">
-      <img id="fly-frame" alt="Physics view of the simulated fly walking" />
+      <img id="fly-frame" alt="Physics view of the Bitcraze Crazyflie 2 drone piloted by Drosophila nervous system" />
       <div class="fly-overlay">
-        <div class="legs" id="legs" aria-label="Leg contact state"></div>
+        <div class="legs" id="legs" aria-label="Motor Rotor Status"></div>
       </div>
     </div>
     <dl class="readout" id="body-readout"></dl>
@@ -38,7 +38,7 @@
 
   <section class="panel brain-panel">
     <div class="panel-head">
-      <h2>Brain activity</h2>
+      <h2>Drosophila Brain Activity</h2>
       <div class="panel-tools">
         <label class="chk"><input type="checkbox" id="opt-spin" checked /> auto-rotate</label>
         <label class="chk"><input type="checkbox" id="opt-trails" checked /> spike flashes</label>
@@ -63,7 +63,7 @@
   </section>
 
   <section class="panel control-panel">
-    <div class="panel-head"><h2>Experiment</h2></div>
+    <div class="panel-head"><h2>Drone Control Experiment</h2></div>
     <div class="presets" id="presets"></div>
     <div class="control-row">
       <label for="speed">simulation speed</label>
@@ -75,7 +75,7 @@
       <button id="btn-reset" class="btn">reset</button>
       <button id="btn-unsilence" class="btn subtle">clear lesions</button>
     </div>
-    <p class="note" id="lesion-note">Click a region name to lesion it (silence its output) and watch what the fly loses.</p>
+    <p class="note" id="lesion-note">Click a region name to lesion it (silence its output) and watch how the Bitcraze Crazyflie 2 drone responds.</p>
     <p class="source" id="source"></p>
   </section>
 </main>
