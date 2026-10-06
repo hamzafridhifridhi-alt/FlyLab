@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>FlyLab — live Drosophila connectome</title>
+<link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="dot" id="link-dot" aria-hidden="true"></span>
+    <h1>FlyLab</h1>
+    <span class="sub" id="scale-line">loading connectome…</span>
+  </div>
+  <div class="stats" role="status" aria-live="polite">
+    <div class="stat"><span class="k">brain clock</span><span class="v" id="stat-time">0 ms</span></div>
+    <div class="stat"><span class="k">speed</span><span class="v" id="stat-rt">0.00&times;</span></div>
+    <div class="stat"><span class="k">spikes/s</span><span class="v" id="stat-spikes">0</span></div>
+    <div class="stat"><span class="k">stream</span><span class="v" id="stat-hz">0 Hz</span></div>
+  </div>
+</header>
+
+<main class="layout">
+  <section class="panel fly-panel">
+    <div class="panel-head">
+      <h2>What the fly is doing</h2>
+      <span class="badge" id="behavior-badge">standing</span>
+    </div>
+    <div class="viewport fly-viewport">
+      <img id="fly-frame" alt="Physics view of the simulated fly walking" />
+      <div class="fly-overlay">
+        <div class="legs" id="legs" aria-label="Leg contact state"></div>
+      </div>
+    </div>
+    <dl class="readout" id="body-readout"></dl>
+  </section>
+
+  <section class="panel brain-panel">
+    <div class="panel-head">
+      <h2>Brain activity</h2>
+      <div class="panel-tools">
+        <label class="chk"><input type="checkbox" id="opt-spin" checked /> auto-rotate</label>
+        <label class="chk"><input type="checkbox" id="opt-trails" checked /> spike flashes</label>
+        <select id="opt-color" aria-label="Colour neurons by">
+          <option value="region">colour: region</option>
+          <option value="nt">colour: neurotransmitter</option>
+          <option value="heat">colour: activity only</option>
+        </select>
+      </div>
+    </div>
+    <div id="brain-view" class="viewport">
+      <canvas id="brain-canvas"></canvas>
+      <div class="debug" id="brain-debug" hidden></div>
+      <div class="hint" id="brain-hint">drag to orbit · scroll to zoom · click a neuron to inspect</div>
+      <div class="inspect" id="inspect" hidden></div>
+    </div>
+  </section>
+
+  <section class="panel regions-panel">
+    <div class="panel-head"><h2>Region indicators</h2><span class="hint-inline">mean firing rate</span></div>
+    <ul class="regions" id="regions"></ul>
+  </section>
+
+  <section class="panel control-panel">
+    <div class="panel-head"><h2>Experiment</h2></div>
+    <div class="presets" id="presets"></div>
+    <div class="control-row">
+      <label for="speed">simulation speed</label>
+      <input type="range" id="speed" min="0.25" max="3" step="0.25" value="1" />
+      <output id="speed-out">1.0&times;</output>
+    </div>
+    <div class="control-row buttons">
+      <button id="btn-pause" class="btn">pause</button>
+      <button id="btn-reset" class="btn">reset</button>
+      <button id="btn-unsilence" class="btn subtle">clear lesions</button>
+    </div>
+    <p class="note" id="lesion-note">Click a region name to lesion it (silence its output) and watch what the fly loses.</p>
+    <p class="source" id="source"></p>
+  </section>
+</main>
+
+<script type="module" src="/static/app.js"></script>
+</body>
+</html>
